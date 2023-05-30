@@ -38,7 +38,7 @@ export const TableHelpers = {
 
     return tableRaw;
   },
-  sortDataByField: (data: EntityWithID<any[]>[], field: string) => {
+  sortDataByField: function (data: EntityWithID<any[]>[], field: string) {
     const heading = data[0];
     const rest = data.slice(1);
 
@@ -59,5 +59,21 @@ export const TableHelpers = {
     });
 
     return [heading, ...sorted];
+  },
+  /**
+   * Search implementation is rather straightforward:
+   * We concatenate all the values in a row to a single value and search for a subsrt in this value.
+   */
+  filterBySearchQuery: function (data: EntityWithID<any[]>[], query: string) {
+    const heading = data[0];
+    const rest = data.slice(1);
+
+    const filtered = rest.filter(row => {
+      const values = row.data.join('');
+
+      return values.toLocaleLowerCase().includes(query.toLocaleLowerCase());
+    });
+
+    return [heading, ...filtered];
   },
 };

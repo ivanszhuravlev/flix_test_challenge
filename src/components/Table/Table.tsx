@@ -1,9 +1,12 @@
 import React, {useMemo} from 'react';
 import {FlatList, ListRenderItem} from 'react-native';
 import {DataHelpers, EntityWithID} from '../../data';
+import {SearchInput} from '../ui/SearchInput';
 import {TableRow} from '../ui/TableRow';
 import {TableHelpers} from './Table.helpers';
 import {TableDataRaw} from './Table.model';
+import {tableStyles} from './Table.styles';
+import {useDataWithSearch} from './useDataWithSearch';
 import {useDataWithSorting} from './useDataWithSorting';
 
 interface Props {
@@ -23,7 +26,13 @@ const Table = ({data, dataVersion}: Props) => {
     data: sortedData,
     sortByField,
     field: sortedField,
-  } = useDataWithSorting(formattedData, dataVersion);
+  } = useDataWithSorting(formattedData);
+
+  const {
+    data: searchedData,
+    search,
+    searchQuery,
+  } = useDataWithSearch(sortedData);
 
   const renderItem: ListRenderItem<EntityWithID<string[]>> = ({
     item: row,
@@ -40,12 +49,16 @@ const Table = ({data, dataVersion}: Props) => {
   const keyExtractor = (row: EntityWithID<string[]>) => row.id;
 
   return (
-    <FlatList
-      stickyHeaderIndices={[0]}
-      data={sortedData}
-      renderItem={renderItem}
-      keyExtractor={keyExtractor}
-    />
+    <>
+      <SearchInput value={searchQuery} onChange={search} />
+      <FlatList
+        stickyHeaderIndices={[0]}
+        data={searchedData}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        style={tableStyles.table}
+      />
+    </>
   );
 };
 
