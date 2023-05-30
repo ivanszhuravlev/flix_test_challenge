@@ -25,10 +25,7 @@ export const TableRow = ({
     return (
       <Pressable
         key={`${item}-${index}`}
-        style={[
-          tableRowStyles.cell,
-          index === 0 && tableRowStyles.withoutBorder,
-        ]}
+        style={tableRowStyles.cell}
         onPress={handlePress}>
         <Text
           style={[

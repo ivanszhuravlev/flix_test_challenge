@@ -1,5 +1,5 @@
 import {useMemo, useState} from 'react';
-import {EntityWithID} from '../../data/data.model';
+import {EntityWithID} from '../../utils/data';
 import {debounce} from '../../utils';
 import {TableHelpers} from './Table.helpers';
 

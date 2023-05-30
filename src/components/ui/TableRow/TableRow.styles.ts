@@ -18,11 +18,6 @@ export const tableRowStyles = StyleSheet.create({
   cell: {
     flex: 1,
     padding: 8,
-    borderLeftWidth: 1,
-    borderLeftColor: Theme.colors.greyBorder,
-  },
-  withoutBorder: {
-    borderLeftWidth: 0,
   },
   cellText: {
     color: Theme.colors.text,

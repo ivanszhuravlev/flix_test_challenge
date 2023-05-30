@@ -1,6 +1,6 @@
 import React, {useMemo} from 'react';
 import {FlatList, ListRenderItem} from 'react-native';
-import {DataHelpers, EntityWithID} from '../../data';
+import {DataHelpers, EntityWithID} from '../../utils/data';
 import {SearchInput} from '../ui/SearchInput';
 import {TableRow} from '../ui/TableRow';
 import {TableHelpers} from './Table.helpers';

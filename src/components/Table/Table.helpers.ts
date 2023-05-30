@@ -1,4 +1,4 @@
-import {EntityWithID} from '../../data/data.model';
+import {EntityWithID} from '../../utils/data/data.model';
 import {TableValues, TableDataRaw} from './Table.model';
 
 export const TableHelpers = {
