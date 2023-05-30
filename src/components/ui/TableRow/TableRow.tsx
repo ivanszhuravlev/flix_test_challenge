@@ -36,6 +36,7 @@ export const TableRow = ({
             header && tableRowStyles.cellTextHeader,
           ]}>
           {`${item}`}
+          {item === sortedField ? ' ↓' : ''}
         </Text>
       </Pressable>
     );

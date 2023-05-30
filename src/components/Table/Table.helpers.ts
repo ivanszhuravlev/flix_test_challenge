@@ -38,7 +38,7 @@ export const TableHelpers = {
 
     return tableRaw;
   },
-  sortDataByField: (data: EntityWithID<string[]>[], field: string) => {
+  sortDataByField: (data: EntityWithID<any[]>[], field: string) => {
     const heading = data[0];
     const rest = data.slice(1);
 
