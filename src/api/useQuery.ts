@@ -1,10 +1,13 @@
 import {startTransition, useEffect, useState} from 'react';
+import {v4} from 'uuid';
+import {ApiHelpers} from './api.helpers';
 
 type AsyncCb<T> = () => Promise<T>;
 
 export const useQuery = <T>(asyncCb: AsyncCb<T>) => {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<T | null>(null);
+  const [dataVersion, setDataVersion] = useState<string | null>(v4());
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
@@ -13,6 +16,7 @@ export const useQuery = <T>(asyncCb: AsyncCb<T>) => {
     startTransition(() => {
       asyncCb()
         .then(setData)
+        .then(() => setDataVersion(v4()))
         .catch(setError)
         .finally(() => setIsLoading(false));
     });
@@ -20,6 +24,7 @@ export const useQuery = <T>(asyncCb: AsyncCb<T>) => {
 
   return {
     data,
+    dataVersion,
     error,
     isLoading,
   };

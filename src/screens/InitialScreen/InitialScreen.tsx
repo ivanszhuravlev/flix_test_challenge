@@ -6,11 +6,11 @@ import {useQuery} from '../../api/useQuery';
 import {HttpClient} from '../../api/apiClient';
 
 const InitialScreen = () => {
-  const {data, isLoading} = useQuery(HttpClient.fetchUsers);
+  const {data, isLoading, dataVersion} = useQuery(HttpClient.fetchUsers);
 
   return (
     <Page>
-      <Table data={data || []} />
+      <Table data={data || []} dataVersion={dataVersion} />
       {isLoading && <Loader />}
     </Page>
   );

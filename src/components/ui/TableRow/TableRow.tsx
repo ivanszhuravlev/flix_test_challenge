@@ -10,6 +10,7 @@ interface Props {
 export const TableRow = ({header, row}: Props) => {
   const renderCell = (item: any, index: number) => (
     <View
+      key={`${item}-${index}`}
       style={[
         tableRowStyles.cell,
         index === 0 && tableRowStyles.withoutBorder,

@@ -1,10 +1,13 @@
-import {TableData, TableDataRaw} from './Table.model';
+import {TableValues, TableDataRaw} from './Table.model';
 
 export const TableHelpers = {
   normalizeData: function () {},
-  formatTable: function (tableRaw: TableDataRaw): TableData {
+  formatTable: function (tableRaw: TableDataRaw): TableValues {
     const normalizedTable = this.normalizeRawData(tableRaw);
-    return [this.getTableHeader(normalizedTable), ...normalizedTable.map(Object.values)];
+    return [
+      this.getTableHeader(normalizedTable),
+      ...normalizedTable.map(Object.values),
+    ];
   },
   getTableHeader: function (table: TableDataRaw) {
     if (!table?.length) {
@@ -15,7 +18,7 @@ export const TableHelpers = {
   },
   /**
    * Thie method creates a table from an array of objects.
-   * Specifically, it adds a field to a row if it was absent and fills it with ''. 
+   * Specifically, it adds a field to a row if it was absent and fills it with ''.
    * @example input: [
    * {a: '1', b: '1', c: '1'},
    * {a: '2', b: '2'},
