@@ -1,9 +1,9 @@
 import React, {useMemo} from 'react';
 import {FlatList, ListRenderItem} from 'react-native';
-import {ApiHelpers, EntityWithID} from '../../api/api.helpers';
+import {DataHelpers, EntityWithID} from '../../data/data.helpers';
 import {TableRow} from '../ui/TableRow';
 import {TableHelpers} from './Table.helpers';
-import {TableDataRaw, TableValues} from './Table.model';
+import {TableDataRaw} from './Table.model';
 
 interface Props {
   data: TableDataRaw;
@@ -13,7 +13,7 @@ interface Props {
 const Table = ({data, dataVersion}: Props) => {
   const formattedData = useMemo(() => {
     const formatted = TableHelpers.formatTable(data);
-    const withUUID = ApiHelpers.feedWithUUID(formatted);
+    const withUUID = DataHelpers.feedWithUUID(formatted);
 
     return withUUID;
   }, [dataVersion]);
