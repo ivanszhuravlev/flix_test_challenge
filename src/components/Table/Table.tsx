@@ -28,11 +28,7 @@ const Table = ({data, dataVersion}: Props) => {
     field: sortedField,
   } = useDataWithSorting(formattedData);
 
-  const {
-    data: searchedData,
-    search,
-    searchQuery,
-  } = useDataWithSearch(sortedData);
+  const {data: searchedData, search} = useDataWithSearch(sortedData);
 
   const renderItem: ListRenderItem<EntityWithID<string[]>> = ({
     item: row,
@@ -50,7 +46,7 @@ const Table = ({data, dataVersion}: Props) => {
 
   return (
     <>
-      <SearchInput value={searchQuery} onChange={search} />
+      <SearchInput onChange={search} />
       <FlatList
         stickyHeaderIndices={[0]}
         data={searchedData}
