@@ -8,8 +8,6 @@ export const useQuery = <T>(asyncCb: AsyncCb<T>) => {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    console.log('LOAD');
-
     setIsLoading(true);
 
     startTransition(() => {
