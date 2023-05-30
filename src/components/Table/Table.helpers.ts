@@ -1,3 +1,4 @@
+import {EntityWithID} from '../../data/data.model';
 import {TableValues, TableDataRaw} from './Table.model';
 
 export const TableHelpers = {
@@ -36,5 +37,27 @@ export const TableHelpers = {
     //TODO
 
     return tableRaw;
+  },
+  sortDataByField: (data: EntityWithID<string[]>[], field: string) => {
+    const heading = data[0];
+    const rest = data.slice(1);
+
+    const fieldIndex = heading.data.indexOf(field);
+
+    if (fieldIndex < 0) {
+      return data;
+    }
+
+    const sorted = [...rest].sort((a, b) => {
+      if (a.data[fieldIndex] > b.data[fieldIndex]) {
+        return 1;
+      }
+      if (a.data[fieldIndex] < b.data[fieldIndex]) {
+        return -1;
+      }
+      return 0;
+    });
+
+    return [heading, ...sorted];
   },
 };
