@@ -5,7 +5,7 @@ export const debounce = <T extends Callback>(
   cb: T,
   timeout = 300,
 ): DebouncedFunc<T> => {
-  let timer: number;
+  let timer: NodeJS.Timeout;
 
   return (...args: Parameters<T>) => {
     clearTimeout(timer);
