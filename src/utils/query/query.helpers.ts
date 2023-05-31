@@ -41,8 +41,6 @@ export const QueryHelpers = {
   ) {
     const stored = await CacheControl.getCachedItem<T>(key, cacheTime);
 
-    console.log('Stored', stored?.data);
-
     return stored?.data || (await this.fetchRemoteData(key, asyncCb));
   },
 };
