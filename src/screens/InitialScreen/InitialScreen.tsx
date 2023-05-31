@@ -11,7 +11,7 @@ import {View} from 'react-native';
 const InitialScreen = () => {
   const {data, isLoading, dataVersion, refetch} = useQuery(
     'users',
-    HttpClient.fetchUsers
+    HttpClient.fetchUsers,
   );
 
   return (

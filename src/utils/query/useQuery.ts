@@ -15,21 +15,12 @@ export const useQuery = <T>(
   const [dataVersion, setDataVersion] = useState<string | null>(v4());
   const [error, setError] = useState<Error | null>(null);
 
-  const fetchRemoteData = async () => {
-    const response = await asyncCb();
-
-    await QueryHelpers.setCachedItem(key, response);
-
-    return response;
-  };
-
-  const getData = async () => {
-    const stored = await QueryHelpers.getCachedItem<T>(
+  const getData = () => {
+    return QueryHelpers.getData(
       key,
+      asyncCb,
       opts?.cacheTime || DEFAULT_CACHE_TIME,
     );
-
-    return stored?.data || (await fetchRemoteData());
   };
 
   const fetch = useCallback(() => {

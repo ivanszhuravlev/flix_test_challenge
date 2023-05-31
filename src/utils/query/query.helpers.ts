@@ -1,7 +1,7 @@
 import {Storage} from '../storage';
 import {QueryData} from './query.model';
 
-export const QueryHelpers = {
+export const CacheControl = {
   getIsDataStale: function <T>(data: QueryData<T>, cacheTime: number) {
     const now = Date.now();
 
@@ -23,5 +23,26 @@ export const QueryHelpers = {
       timestamp: Date.now(),
       data,
     });
+  },
+};
+
+export const QueryHelpers = {
+  fetchRemoteData: async function <T>(key: string, asyncCb: () => Promise<T>) {
+    const response = await asyncCb();
+
+    await CacheControl.setCachedItem(key, response);
+
+    return response;
+  },
+  getData: async function <T>(
+    key: string,
+    asyncCb: () => Promise<T>,
+    cacheTime: number,
+  ) {
+    const stored = await CacheControl.getCachedItem<T>(key, cacheTime);
+
+    console.log('Stored', stored?.data);
+
+    return stored?.data || (await this.fetchRemoteData(key, asyncCb));
   },
 };
