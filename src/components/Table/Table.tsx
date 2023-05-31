@@ -52,7 +52,7 @@ const Table = ({data, dataVersion}: Props) => {
         data={searchedData}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
-        style={tableStyles.table}
+        contentContainerStyle={tableStyles.table}
       />
     </>
   );

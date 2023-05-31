@@ -5,12 +5,6 @@ export const tableRowStyles = StyleSheet.create({
   row: {
     flex: 1,
     flexDirection: 'row',
-
-    borderLeftWidth: 1,
-    borderLeftColor: Theme.colors.greyBorder,
-
-    borderRightWidth: 1,
-    borderRightColor: Theme.colors.greyBorder,
   },
   header: {
     backgroundColor: Theme.colors.primary,
